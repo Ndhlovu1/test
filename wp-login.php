@@ -11,6 +11,8 @@
 /** Make sure that the WordPress bootstrap has run before continuing. */
 require __DIR__ . '/wp-load.php';
 
+
+
 // Redirect to HTTPS login if forced to use SSL.
 if ( force_ssl_admin() && ! is_ssl() ) {
 	if ( str_starts_with( $_SERVER['REQUEST_URI'], 'http' ) ) {
@@ -84,6 +86,9 @@ function login_header( $title = 'Log In', $message = '', $wp_error = null ) {
 	 * @param string $login_title The page title, with extra context added.
 	 * @param string $title       The original page title.
 	 */
+	$login_title = apply_filters( 'login_title', $login_title, $title );
+
+
 	$login_title = apply_filters( 'login_title', $login_title, $title );
 
 	?><!DOCTYPE html>
